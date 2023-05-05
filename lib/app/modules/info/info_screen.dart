@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:random/app/core/constants/constants.dart';
 import 'package:random/app/core/widgets/container_information.dart';
+import 'package:random/app/modules/info/controller/info_controller.dart';
 
 class InfoScreen extends StatelessWidget {
   final int id;
@@ -24,6 +25,7 @@ class InfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = InfoController();
     return Scaffold(
       backgroundColor: AppColors.kMainGray,
       appBar: AppBar(

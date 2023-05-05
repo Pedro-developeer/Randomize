@@ -13,33 +13,35 @@ class ContainerProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.kGrayContainer,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      width: 353,
-      height: 58,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: 33,
+    return Center(
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.kGrayContainer,
+          borderRadius: BorderRadius.circular(10),
         ),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              color: AppColors.kWhite,
-            ),
-            SizedBox(width: 4),
-            Flexible(
-              child: Text(
-                information,
-                style: AppTextStyles.fontText.copyWith(
-                  color: AppColors.kWhite,
+        width: double.infinity,
+        height: 58,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 33,
+          ),
+          child: Row(
+            children: [
+              Icon(
+                icon,
+                color: AppColors.kWhite,
+              ),
+              SizedBox(width: 4),
+              Flexible(
+                child: Text(
+                  information,
+                  style: AppTextStyles.fontText.copyWith(
+                    color: AppColors.kWhite,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -1,11 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:random/app/core/widgets/button_card.dart';
 import 'package:random/app/models/user.dart';
 import 'package:random/app/modules/home/controller/home_controller.dart';
 import 'package:random/app/modules/info/info_screen.dart';
 import 'package:random/app/core/widgets/loading.dart';
 import 'package:random/app/core/constants/constants.dart';
+import 'package:random/app/routes/page_routes.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -92,66 +96,69 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.vertical,
                     physics: BouncingScrollPhysics(),
                     itemCount: controller.users.length,
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 10,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Hero(
-                            tag: 'userImg$index',
-                            child: Container(
-                              padding: EdgeInsets.all(space),
-                              height: space * 10,
-                              width: space * 10,
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: CircleAvatar(
-                                  backgroundColor: AppColors.kMainGray,
-                                  backgroundImage: NetworkImage(
-                                    controller.users[index].userLargeImage,
+                    itemBuilder: (context, index) => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Hero(
+                          tag: 'userImg$index',
+                          child: Container(
+                            padding: EdgeInsets.all(space),
+                            height: space * 9,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: CircleAvatar(
+                                backgroundColor: AppColors.kMainGray,
+                                child: ClipOval(
+                                  child: CachedNetworkImage(
+                                    imageUrl:
+                                        controller.users[index].userLargeImage,
+                                    placeholder: (context, url) =>
+                                        LoadingAnimationWidget.inkDrop(
+                                      color: AppColors.kWhite,
+                                      size: 30,
+                                    ),
+                                    errorWidget: (context, url, error) => Icon(
+                                      Icons.error,
+                                      color: AppColors.kWhite,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Flexible(
-                                  flex: 2,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 9),
-                                        child: Text(
-                                          controller.users[index]
-                                              .getNomeCompleto(),
-                                          style:
-                                              AppTextStyles.titleHead.copyWith(
-                                            color: AppColors.kWhite,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Flexible(
+                                flex: 3,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 9),
+                                      child: Text(
+                                        controller.users[index]
+                                            .getNomeCompleto(),
+                                        style: AppTextStyles.titleHead.copyWith(
+                                          color: AppColors.kWhite,
                                         ),
-                                      ),
-                                      SizedBox(height: space * 0.7),
-                                      Text(
-                                        controller.users[index].getEndereco(),
-                                        style: AppTextStyles.fontText,
                                         overflow: TextOverflow.ellipsis,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    SizedBox(height: space * 0.7),
+                                    Text(
+                                      controller.users[index].getEndereco(),
+                                      style: AppTextStyles.fontText,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
                                 ),
-                                Spacer(),
-                                ButtonCard(
-                                  onPressed: () {
-                                    Navigator.push(
+                              ),
+                              Spacer(),
+                              ButtonCard(
+                                onPressed: () {
+                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => InfoScreen(
@@ -169,13 +176,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       ),
                                     );
-                                  },
-                                ),
-                              ],
-                            ),
+                                  // Modular.to.navigate(
+                                  //   AppPageRoutes.info.fullPath,
+                                  // );
+                                },
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 },

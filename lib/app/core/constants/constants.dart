@@ -8,7 +8,7 @@ class AppColors {
   static const kSecBlue = Color(0xFF52658C);
   static const kWhite = Color(0xFFF5F5F5);
   static const kGrayContainer = Color(0xFF202020);
-  static const kDarkSubtitle = Color(0xFF333333);
+  static const kDarkSubtitle = Color(0xFF636363);
   static const kBlack = Color(0xFF000000);
   static const kGrey = Color(0xFFA0A0A0);
   static const kBlackBackground = Color(0xFF131313);
@@ -38,7 +38,7 @@ class AppTextStyles {
 
   static const fontAppBar = TextStyle(
     color: AppColors.kWhite,
-    fontSize: 18,
+    fontSize: 24,
     fontFamily: '.SF UI Display',
     fontWeight: FontWeight.bold,
   );

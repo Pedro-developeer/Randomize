@@ -1,0 +1,165 @@
+import '../utils/app_log.dart';
+import 'module_routes.dart';
+import 'submodule_routes.dart';
+
+enum AppPageRoutes {
+  onboarding,
+  login,
+  loggedIn,
+  register,
+  indicate,
+  listIndicate,
+  successIndicate,
+  documents,
+  payments,
+  listProperty,
+  listLandlordProperty,
+  detailsProperty,
+  repairInfo,
+  repairRequest,
+  realtorPage,
+  tenantPage,
+  landlordPage,
+  buyerPage,
+  listClientUser,
+  updateClientUser,
+  registerClientUser,
+  clientProfileUser,
+  detailsPropertyTenant,
+}
+
+extension RoutesPath on AppPageRoutes {
+  String get path {
+    switch (this) {
+      case AppPageRoutes.login:
+      case AppPageRoutes.register:
+      case AppPageRoutes.onboarding:
+        return '/';
+      case AppPageRoutes.loggedIn:
+        return '/logged';
+      case AppPageRoutes.tenantPage:
+        return '/tenant';
+      case AppPageRoutes.indicate:
+        return '/indicate';
+      case AppPageRoutes.successIndicate:
+        return '/success-indicate';
+      case AppPageRoutes.listIndicate:
+        return '/list-indicate';
+      case AppPageRoutes.documents:
+        return '/documents';
+      case AppPageRoutes.payments:
+        return '/payments';
+      case AppPageRoutes.listProperty:
+        return '/list-property';
+      case AppPageRoutes.detailsProperty:
+        return '/details-property';
+      case AppPageRoutes.listLandlordProperty:
+        return '/list-landlord-property';
+      case AppPageRoutes.repairInfo:
+        return '/repair';
+      case AppPageRoutes.repairRequest:
+        return '/repair-request';
+      case AppPageRoutes.realtorPage:
+        return '/realtor';
+      case AppPageRoutes.landlordPage:
+        return '/landlord';
+      case AppPageRoutes.buyerPage:
+        return '/buyer';
+      case AppPageRoutes.listClientUser:
+        return '/list-client-user';
+      case AppPageRoutes.updateClientUser:
+        return '/update-client-user';
+      case AppPageRoutes.clientProfileUser:
+        return '/client-profile-user';
+      case AppPageRoutes.registerClientUser:
+        return '/register-client-user';
+      case AppPageRoutes.detailsPropertyTenant:
+        return '/details-property-tenant';
+    }
+  }
+
+  String get fullPath {
+    late String fullPath;
+    switch (this) {
+      case AppPageRoutes.onboarding:
+        fullPath = '${AppModuleRoutes.onboarding.path}$path';
+        break;
+      case AppPageRoutes.buyerPage:
+        fullPath = '${AppModuleRoutes.buyer.path}$path';
+        break;
+      case AppPageRoutes.tenantPage:
+        fullPath = '${AppModuleRoutes.tenant.path}$path';
+        break;
+      case AppPageRoutes.documents:
+        fullPath = '${AppModuleRoutes.home.path}$path';
+        break;
+      case AppPageRoutes.payments:
+        fullPath = '${AppModuleRoutes.home.path}$path';
+        break;
+      case AppPageRoutes.indicate:
+        fullPath = '${AppModuleRoutes.home.path}$path';
+        break;
+      case AppPageRoutes.successIndicate:
+        fullPath = '${AppModuleRoutes.home.path}$path';
+        break;
+      case AppPageRoutes.login:
+        fullPath = '${AppSubmoduleRoutes.login.fullPath}$path';
+        break;
+      case AppPageRoutes.loggedIn:
+        fullPath = '${AppSubmoduleRoutes.login.fullPath}$path';
+        break;
+      case AppPageRoutes.register:
+        fullPath = '${AppSubmoduleRoutes.register.fullPath}$path';
+        break;
+      case AppPageRoutes.listProperty:
+        fullPath = '${AppModuleRoutes.home.path}$path';
+        break;
+      case AppPageRoutes.detailsProperty:
+        fullPath = '${AppModuleRoutes.home.path}$path';
+        break;
+      case AppPageRoutes.listLandlordProperty:
+        fullPath = '${AppModuleRoutes.home.path}$path';
+        break;
+      case AppPageRoutes.listIndicate:
+        fullPath = '${AppModuleRoutes.home.path}$path';
+        break;
+      case AppPageRoutes.repairInfo:
+        fullPath = '${AppModuleRoutes.home.path}$path';
+        break;
+      case AppPageRoutes.repairRequest:
+        fullPath = '${AppModuleRoutes.home.path}$path';
+        break;
+      case AppPageRoutes.realtorPage:
+        fullPath = '${AppModuleRoutes.realtor.path}$path';
+        break;
+      case AppPageRoutes.landlordPage:
+        fullPath = '${AppModuleRoutes.landlord.path}$path';
+        break;
+      case AppPageRoutes.listClientUser:
+        fullPath = '${AppModuleRoutes.realtor.path}$path';
+        break;
+      case AppPageRoutes.updateClientUser:
+        fullPath = '${AppModuleRoutes.realtor.path}$path';
+        break;
+      case AppPageRoutes.clientProfileUser:
+        fullPath = '${AppModuleRoutes.realtor.path}$path';
+        break;
+      case AppPageRoutes.registerClientUser:
+        fullPath = '${AppModuleRoutes.realtor.path}$path';
+        break;
+      case AppPageRoutes.detailsPropertyTenant:
+        fullPath = '${AppModuleRoutes.tenant.path}$path';
+        break;
+    }
+
+    final url = _handleUrl(fullPath);
+    AppLog.route('Navigating to $url');
+    return url;
+  }
+}
+
+String _handleUrl(String url) {
+  final handledUrl = url.replaceAll('//', '/');
+
+  return handledUrl;
+}
