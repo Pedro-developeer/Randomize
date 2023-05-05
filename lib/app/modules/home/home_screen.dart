@@ -158,27 +158,24 @@ class _HomeScreenState extends State<HomeScreen> {
                               Spacer(),
                               ButtonCard(
                                 onPressed: () {
-                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => InfoScreen(
-                                          id: index,
-                                          username: controller.users[index]
-                                              .getNomeCompleto(),
-                                          userImg: controller
-                                              .users[index].userLargeImage,
-                                          location: controller.users[index]
-                                              .getEndereco(),
-                                          email: controller.users[index].email,
-                                          age: controller.users[index].age,
-                                          phoneNumber: controller
-                                              .users[index].phoneNumber,
-                                        ),
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => InfoScreen(
+                                        id: index,
+                                        username: controller.users[index]
+                                            .getNomeCompleto(),
+                                        userImg: controller
+                                            .users[index].userLargeImage,
+                                        location: controller.users[index]
+                                            .getEndereco(),
+                                        email: controller.users[index].email,
+                                        age: controller.users[index].age,
+                                        phoneNumber:
+                                            controller.users[index].phoneNumber,
                                       ),
-                                    );
-                                  // Modular.to.navigate(
-                                  //   AppPageRoutes.info.fullPath,
-                                  // );
+                                    ),
+                                  );
                                 },
                               ),
                             ],
